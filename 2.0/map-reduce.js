@@ -6,6 +6,28 @@
 define([],
   function () {
     /**
+     * Columns to be retrieved in the search.
+     *
+     * @type {object[]}
+     */
+    const searchColumns = [{
+      name: ''
+    }]
+
+    /**
+     * Columns to be retrieved in the results.
+     *
+     * @type {string[]}
+     */
+    const resultColumns = searchColumns.map(function (c) {
+      var column = c.name + (c.join ? '.' + c.join : '')
+      if (c.summary) {
+        column = c.summary + '(' + column + ')'
+      }
+      return column
+    })
+
+    /**
      * Marks the beginning of the Map/Reduce process and generates input data.
      *
      * @typedef {Object} ObjectRef
